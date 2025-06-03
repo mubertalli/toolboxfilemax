@@ -1,0 +1,68 @@
+---
+title: "flat_get_one_file_size.Rmd empty"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r development, include=FALSE}
+library(testthat)
+library(dplyr)
+```
+
+```{r development-load}
+# Load already included functions if relevant
+pkgload::load_all(export_all = FALSE)
+```
+
+# get_one_file_size
+
+```{r development-get_one_file_size}
+# Prepare the code of your function here
+
+pathfile = './LICENSE.md'
+file.size(pathfile)
+filename = gsub("^.*/", "", pathfile)
+filesize = file.size(pathfile)
+
+data.frame(name = filename, size = filesize)
+
+```
+
+```{r function-get_one_file_size}
+#' get_one_file_size Title
+#'
+#' @param pathfile nom du fichier 
+#' @return dataframe with file name and size
+#' @importFrom 
+#' @export
+#' @examples get_one_file_size(path_file = "td-package.html")
+#' 
+get_one_file_size <- function(path_file) {
+  filename = gsub("^.*/", "", path_file)
+  filesize = file.size(path_file)
+  df_out <- data.frame(name = filename, size = filesize)
+  return(df_out)
+}
+```
+
+```{r examples-get_one_file_size}
+get_one_file_size('./LICENSE.md')
+```
+
+```{r tests-get_one_file_size}
+
+test_that("get_one_file_size works", {
+  expect_true(inherits(get_one_file_size, "function"))
+}
+
+)
+```
+
+
+```{r development-inflate, eval=FALSE}
+# Run but keep eval=FALSE to avoid infinite loop
+# Execute in the console directly
+fusen::inflate(flat_file = "dev/flat_get_one_file_size.Rmd", vignette_name = "Go further")
+```
+
